@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyyao76f34ffr"]
+
+[ext_resource type="PackedScene" uid="uid://xtdu7wdqr8pm" path="res://source/wall_lamp.glb" id="1_xbf5v"]
+[ext_resource type="Script" path="res://scripts/omni_light_3d.gd" id="2_gmskq"]
+
+[node name="lamp" type="Node3D"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_xbf5v")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sketchfab_Scene"]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 29.4028, 15.746, 0.0832001)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.2
+omni_range = 5.22237
+script = ExtResource("2_gmskq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Sketchfab_Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1741, 14.2555, -0.523341)
+visible = false
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+size = Vector3(37.3482, 49.1335, 38.9288)

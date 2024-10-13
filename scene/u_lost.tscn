@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=3 uid="uid://don8274lbbq7r"]
+
+[ext_resource type="Script" path="res://scene/u_lost.gd" id="1_f1yec"]
+[ext_resource type="Texture2D" uid="uid://errvongeprjm" path="res://Screenshot 2024-09-22 163056.png" id="1_mt6no"]
+[ext_resource type="FontFile" uid="uid://3rmp6x8m781a" path="res://ui/WeirdComic-Regular.ttf" id="2_2xhh0"]
+[ext_resource type="AudioStream" uid="uid://dewo2gg6spc3t" path="res://sounds/horror-background-atmosphere-6-199279.mp3" id="3_703uq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7x8bh"]
+texture = ExtResource("1_mt6no")
+
+[sub_resource type="Theme" id="Theme_t0bqc"]
+default_font = ExtResource("2_2xhh0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cps28"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md52a"]
+bg_color = Color(0.58506, 0.585063, 0.585061, 1)
+skew = Vector2(0.39, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_651ik"]
+bg_color = Color(0.65423, 0.654233, 0.654231, 1)
+skew = Vector2(0.39, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al6fs"]
+bg_color = Color(0.969137, 0.969137, 0.969137, 1)
+skew = Vector2(0.39, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_size = 5
+
+[node name="ULost" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f1yec")
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7x8bh")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -232.0
+offset_right = 211.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_t0bqc")
+theme_override_font_sizes/font_size = 62
+text = "Lost In Darkness"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -35.5
+offset_right = -315.0
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_t0bqc")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 62
+text = "You"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 41.135
+offset_top = -61.0
+offset_right = 223.62
+offset_bottom = 70.8
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 9
+
+[node name="start" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cps28")
+theme_override_styles/hover = SubResource("StyleBoxFlat_md52a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_651ik")
+theme_override_styles/normal = SubResource("StyleBoxFlat_al6fs")
+text = "Restart Game"
+
+[node name="instructions" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cps28")
+theme_override_styles/hover = SubResource("StyleBoxFlat_md52a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_651ik")
+theme_override_styles/normal = SubResource("StyleBoxFlat_al6fs")
+text = "Instructions"
+
+[node name="option" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cps28")
+theme_override_styles/hover = SubResource("StyleBoxFlat_md52a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_651ik")
+theme_override_styles/normal = SubResource("StyleBoxFlat_al6fs")
+text = "Option"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cps28")
+theme_override_styles/hover = SubResource("StyleBoxFlat_md52a")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_651ik")
+theme_override_styles/normal = SubResource("StyleBoxFlat_al6fs")
+text = "Exit
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_703uq")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/instructions" to="." method="_on_instructions_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

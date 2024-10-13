@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://djth2lnudr3j6"]
+
+[ext_resource type="PackedScene" uid="uid://dbe5jac51jfp2" path="res://source/small_electric_generator.glb" id="1_rplxu"]
+[ext_resource type="AudioStream" uid="uid://ceqt60who36e" path="res://sounds/running-generator-163754.mp3" id="2_2exlq"]
+
+[node name="generator" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_rplxu")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285945, 0)
+light_color = Color(0.773918, 0.599033, 0, 1)
+light_energy = 3.406
+omni_range = 0.654588
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00822556, 0.338907, 0)
+visible = false
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23254, 0)
+stream = ExtResource("2_2exlq")
+volume_db = -35.0
+autoplay = true

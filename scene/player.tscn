@@ -1,0 +1,136 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxx3nvbfk20wx"]
+
+[ext_resource type="Script" path="res://scripts/character_body_3d.gd" id="1_tfej4"]
+[ext_resource type="PackedScene" uid="uid://dhqmb4c6x77lg" path="res://scene/torch.tscn" id="2_sdnr2"]
+[ext_resource type="Script" path="res://scripts/detect.gd" id="3_w0b7x"]
+[ext_resource type="Texture2D" uid="uid://bwedlfe6wr71h" path="res://source/toppng.com-circle-crosshair-png-transparent-library-dotted-circle-border-510x510.png" id="4_bakuh"]
+[ext_resource type="Script" path="res://scripts/detect_lamp.gd" id="4_nf4kl"]
+[ext_resource type="AudioStream" uid="uid://cr1t0k25e7iv6" path="res://sounds/concrete-footsteps-6752.mp3" id="5_4qcna"]
+[ext_resource type="AudioStream" uid="uid://dixvtlkh8q3s6" path="res://sounds/FEETHmn_Jumping on concrete 2 (ID 1836)_BSB.wav" id="6_nov60"]
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="6_vuaol"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_byix3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fh0ne"]
+font_size = 86
+
+[node name="player" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000286102, 0.0039115, -0.00857604)
+script = ExtResource("1_tfej4")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(3.095, 0, 0, 0, 3.095, 0, 0, 0, 3.095, 0, 0.5, 0)
+
+[node name="torch" parent="CharacterBody3D/Camera3D" instance=ExtResource("2_sdnr2")]
+transform = Transform3D(0.0298573, 0.00287493, -0.000523572, -0.00287537, 0.0298619, -4.57419e-12, 0.000521162, 5.01822e-05, 0.0299954, 0.114, -0.117, -0.221)
+
+[node name="detect_generator" type="RayCast3D" parent="CharacterBody3D/Camera3D"]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0)
+collision_mask = 2
+script = ExtResource("3_w0b7x")
+
+[node name="detect_lamp" type="RayCast3D" parent="CharacterBody3D/Camera3D"]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0)
+collision_mask = 4
+script = ExtResource("4_nf4kl")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CharacterBody3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27139, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CharacterBody3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0390824, 2.80241, -0.594787)
+size = Vector3(0.541122, 0.001, 2.18982)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_byix3")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562745, 0)
+rotation_edit_mode = 2
+current = true
+
+[node name="sounds" type="Node3D" parent="CharacterBody3D"]
+
+[node name="foots" type="AudioStreamPlayer3D" parent="CharacterBody3D/sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.86141, 0)
+stream = ExtResource("5_4qcna")
+
+[node name="jump" type="AudioStreamPlayer3D" parent="CharacterBody3D/sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.72282, 0)
+stream = ExtResource("6_nov60")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/CenterContainer"]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_bakuh")
+
+[node name="Label" type="Label" parent="Control/CenterContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "E"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.495
+offset_top = -241.128
+offset_right = -15.41
+offset_bottom = 241.127
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+max_value = 200.0
+value = 55.0
+rounded = true
+fill_mode = 3
+script = ExtResource("6_vuaol")
+
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1038.55
+offset_top = -58.9995
+offset_right = -45.5475
+offset_bottom = 59.0005
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU LOST IN DARKNESS"
+label_settings = SubResource("LabelSettings_fh0ne")
+
+[connection signal="got_it" from="CharacterBody3D/Camera3D/detect_generator" to="CharacterBody3D/Camera3D/torch/SpotLight3D" method="_on_detect_got_it"]
+[connection signal="got_it" from="CharacterBody3D/Camera3D/detect_generator" to="CanvasLayer/ProgressBar" method="_on_detect_generator_got_it"]
+
+[editable path="CharacterBody3D/Camera3D/torch"]

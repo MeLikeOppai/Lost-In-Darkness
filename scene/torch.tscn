@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhqmb4c6x77lg"]
+
+[ext_resource type="PackedScene" uid="uid://c5f6qmx1npdno" path="res://source/flash_light.glb" id="1_dw0v1"]
+[ext_resource type="Script" path="res://scripts/spot_light_3d.gd" id="2_n0wyi"]
+
+[node name="torch" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_dw0v1")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00815582, 1.27468, -0.671148)
+shadow_enabled = true
+shadow_blur = 2.0
+distance_fade_enabled = true
+spot_range = 6.38247
+spot_angle = 43.6594
+script = ExtResource("2_n0wyi")
+
+[connection signal="property_list_changed" from="SpotLight3D" to="SpotLight3D" method="_on_property_list_changed"]
+[connection signal="ready" from="SpotLight3D" to="SpotLight3D" method="_on_ready"]

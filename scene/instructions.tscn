@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=3 uid="uid://b50vk0phectm2"]
+
+[ext_resource type="Texture2D" uid="uid://errvongeprjm" path="res://Screenshot 2024-09-22 163056.png" id="1_nx7gm"]
+[ext_resource type="Script" path="res://scripts/instructions_back.gd" id="1_ybkrp"]
+[ext_resource type="FontFile" uid="uid://3rmp6x8m781a" path="res://ui/WeirdComic-Regular.ttf" id="2_ehqlr"]
+[ext_resource type="AudioStream" uid="uid://dewo2gg6spc3t" path="res://sounds/horror-background-atmosphere-6-199279.mp3" id="4_t8gab"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_titxw"]
+texture = ExtResource("1_nx7gm")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwhk0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1dm6"]
+bg_color = Color(0.58506, 0.585063, 0.585061, 1)
+skew = Vector2(0.39, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4p7n"]
+bg_color = Color(0.65423, 0.654233, 0.654231, 1)
+skew = Vector2(0.39, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26gd8"]
+bg_color = Color(0.969137, 0.969137, 0.969137, 1)
+skew = Vector2(0.39, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_size = 5
+
+[node name="instructions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ybkrp")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_titxw")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 13.0
+offset_top = -311.0
+offset_right = 575.0
+offset_bottom = 315.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ehqlr")
+text = "Game Instructions:
+
+
+1.Use WASD to move through the maze.
+
+2.Move the mouse to look around.
+
+3.Your torch has limited battery; without it, the maze is completely dark.
+
+4.Approach a generator and press \"E\" to recharge your torch.
+
+5.Your goal is to find the exit before your torch runs out of power.
+
+Good luck finding your way out!"
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.745
+offset_top = -53.83
+offset_right = -32.9349
+offset_bottom = -13.83
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+z_index = 5
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hwhk0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w1dm6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k4p7n")
+theme_override_styles/normal = SubResource("StyleBoxFlat_26gd8")
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_t8gab")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
